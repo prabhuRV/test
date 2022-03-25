@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmarAkbarAntony</title>
+</head>
+<body>
+    <p id="some"></p>
+</body>
+
+<script>
+    const display={
+        myskill: function(a,b) {
+    return this.skill+" "+a+" "+b;
+        }
+    }
+   
+    const amarObj={
+        skill:"singer",  
+    }
+
+    const akbarObj={
+        skill:"Chef",  
+    };
+    const antonyObj={
+        skill:"Magician", 
+    }
+
+
+let amarborowskill=display.myskill.call(amarObj,Object.values(antonyObj),Object.values(akbarObj));
+// console.log(amarborowskill)
+
+var head=document.createElement("h6").innerText="amar skills:- "+amarborowskill;
+var bre=document.createElement("br")
+document.querySelector("body").append(head,bre)
+
+
+
+
+let akbarborowskill=display.myskill.call(akbarObj,Object.values(amarObj),Object.values(antonyObj));
+// console.log(akbarborowskill)
+
+var head1=document.createElement("h1").innerText="akbar skills:- "+akbarborowskill;
+var bre1=document.createElement("br")
+document.querySelector("body").append(head1,bre1)
+
+
+
+
+let antonyborowskill=display.myskill.call(antonyObj,Object.values(amarObj),Object.values(akbarObj));
+var head2=document.createElement("h1").innerText="antony skills:- "+antonyborowskill;
+var bre=document.createElement("br")
+document.querySelector("body").append(head2)
+// console.log(antonyborowskill)
+</script>
+</html>

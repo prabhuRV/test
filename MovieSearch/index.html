@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieSearch</title>
+    <style>
+        /* #movies
+        {
+            border: solid;
+            height: 250px;
+            width: 200px;
+            overflow: scroll;
+        } */
+        #query
+        {
+            border: 3px solid black;
+            border-radius: 5px;
+            height: 40px;
+            width:70%;
+
+            margin-left: 18%;
+            margin-top: 10px;
+        }
+        #container
+        {
+            width:90%;
+            margin: auto;
+       
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(3,1fr);
+            margin-top: 30px;
+           text-size-adjust: 40px;
+           background: #1e130c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #9a8478, #1e130c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #9a8478, #1e130c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        input[type="text"] {
+    font-size:25px;
+}
+        #poster
+        {
+            height: 200px;
+            width: 100%;
+        }
+
+        #moviediv
+        {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color:white ;
+            border-radius:5px ;
+        }
+        h1{
+            /* margin-left: 20%; */
+           color: #cc8585;
+           text-align: center;
+        }
+        #testImg
+        {
+            justify-content: center;
+            height: 300px;
+            width: 200px; 
+        }
+       
+    </style>
+</head>
+<body>
+    <h1>WHICH MOVIE DO YOU WATCH</h1>
+    <input oninput="debounce(main,2000)" type="text" id="query" placeholder="Movie Search Here"/>
+    <!-- <div id="movies"></div> -->
+   
+  <div id="container"></div>
+  <div id="samplediv" >
+    <img id="testImg"src="https://m.media-amazon.com/images/M/MV5BMTE0YWFmOTMtYTU2ZS00ZTIxLWE3OTEtYTNiYzBkZjViZThiXkEyXkFqcGdeQXVyODMzMzQ4OTI@._V1_SX300.jpg"/>
+    <p style="color: green;">IMDb rating : 9 /10</p>
+    <p >Capitan Marvel</p>
+    <p >Date :2019</p>
+
+</div>
+    
+</body>
+<script src="./Movie.js">
+   
+
+
+
+  
+      
+
+</script>
+</html>

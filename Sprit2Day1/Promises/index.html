@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<form >
+<input type="checkbox" name="Burrgar" value="https://i.insider.com/5bbd187101145529745a9895?width=700">Chikan Burrgar<br>
+<input type="checkbox" name="Burrgar" value="Panner Burrgar">Panner Burrgar<br>
+<input type="checkbox" name="Burrgar" value="chickan Pizza">chickan Pizza<br>
+<input type="checkbox" name="Burrgar" value="Panner Pizza">Panner Pizza<br>
+<br>
+<input type="button" onclick="myFunction()" value="Send order">
+<br><br>
+
+</form>
+<h1 id="prabhu"></h1>
+<script>
+function myFunction() {
+    
+  var Burrgar = document.forms[0];
+//   var randomorder=Math.random()*txt
+
+  var txt =0;
+  var txt2 ="";
+  var i;
+  for (i = 0; i <Burrgar.length; i++) {
+    if (Burrgar[i].checked) {
+      txt = txt + i;
+      txt2 = txt2 +Burrgar[i].value+" ";
+    }
+  }
+  //console.log(txt)
+  var dicenum=Math.ceil(Math.random() *(txt*10));
+  //console.log(dicenum)
+
+  var ooderWithFood=dicenum+" "+txt2;
+  
+
+  
+let stetus="Open";
+
+let  foodPromises=new Promise(function(res,rej)
+{
+    if(stetus==="close")
+    {
+        rej("Shop is close now you can go house")
+    }
+    else{
+        setTimeout(function()
+        {
+            res(ooderWithFood)
+        },3000)
+    }
+
+});
+
+foodPromises.then(function(res){
+    document.querySelector("#prabhu").innerText=ooderWithFood;
+})
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>
