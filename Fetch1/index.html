@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch OMDb</title>
+    <style>
+        #container
+        {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(3,1fr);
+            margin-top: 30px;
+        }
+        input
+        {
+            height: 40px;
+            width: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <input id="Name"   placeholder="search Movie" />
+    <button onclick="myFunction()">search</button>
+
+    <div id="container"></div>
+</body>
+<script>
+
+function myFunction(){
+        // console.log("hello");
+         var searchText=document.getElementById("Name").value.toLowerCase();
+            //  console.log(searchText);
+        //  var filterData=data.filter(function(elem){
+        //     return elem.name.toLowerCase().includes(searchText);
+        //  });
+        // console.log(filterData);
+          display(searchText);   
+     }
+function display(searchText)
+{
+     let url=`https://www.omdbapi.com/?s=${searchText}&apikey=23ad7e60&i=tt0090190`
+
+     var data;
+     async function getData()
+     {
+         try{
+             let res=await fetch(url);
+             data=await res.json();
+            // console.log(data)
+             displayData(data.Search)
+           
+         }
+         catch(err)
+         {
+             console.log(err)
+         }
+           
+     }
+     getData()
+    }
+  
+
+      function displayData(data)
+{
+        
+
+
+ data.map(async function(ele,index)
+{
+    document.querySelector("#container").innerHTML=null
+  
+    var divgalary=document.createElement("div");
+    divgalary.setAttribute("id","moviediv")
+    
+
+    var divinfo=document.createElement("div");
+   divinfo.setAttribute("id","infodiv")
+   
+    var img=document.createElement("img");
+    img.setAttribute("src",ele.Poster)
+    img.setAttribute("id","poster")
+
+
+    var divposter=document.createElement("div");
+    divposter.setAttribute("id","posterdiv")
+    var movienme=document.createElement("p");
+
+    movienme.innerText=ele.Title;
+
+    var movieType=document.createElement("p");
+
+    movieType.innerText=ele.Type;
+  
+   var movierating=document.createElement("p");
+   var rating=await rat(ele.imdbID);
+   console.log(rating)
+    movierating.innerText="IMDb rating : "+rating+"/"+10;
+    movierating.style.color="green"
+   
+    // var btn=document.createElement("button");
+    //     btn.innerText="View IMDb"
+    //      btn.addEventListener("click", async function () {
+    //        let hi= await rat(ele.imdbID)
+    //        //console.log(hi)
+    //        btn.innerText=hi
+    //     })
+
+    var realeseDate=document.createElement("p");
+
+    realeseDate.innerText="Date: "+ele.Year;
+
+
+
+
+   divposter.append(img)
+   divinfo.append(movienme,movieType,movierating,realeseDate)
+   divgalary.append(divposter,divinfo)
+        document.querySelector("#container").append(divgalary);
+
+
+       
+});
+}
+async function rat(imdbID)
+{
+    
+
+     var ratingdata;
+     var ratingreun;
+         try{
+             let res=await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=23ad7e60&`);
+             ratingdata=await res.json();
+          console.log(ratingdata)
+        
+          ratingreun=call(ratingdata)
+   
+        let rates=ratingreun
+        // console.log(rates)
+         return rates;
+      
+          
+    
+   //console.log(rating)
+   
+          
+          
+         }
+         catch(err)
+         {
+             console.log(err)
+         }
+        
+      
+           
+     
+   
+      
+     
+    //  return ratingreun;
+}
+
+function call(ratingdata)
+{
+    console.log(ratingdata)
+    // var result
+    // ratingdata.map(function(ele){
+    //     result= ele.Value
+
+
+    // })
+   // console.log(result)
+  let result= ratingdata.imdbRating
+  console.log(result)
+    return result;
+}
+</script>
+
+</html>

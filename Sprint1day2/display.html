@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        #discontainer
+        {
+           margin: auto;
+           /* border: solid; */
+           width: 40%;
+        }
+        table,th,td
+        {
+           text-align: center; 
+           border-collapse: collapse;
+           border: 2px solid grey;
+            
+        }
+        td{
+           font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="discontainer">
+        <table>
+            <thead>
+                
+               
+                <th>Name</th>
+                <th>Number</th>
+                <th>City</th>
+               
+            </thead>
+                <tbody></tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+var arr=JSON.parse(localStorage.getItem("stude"))
+console.log(arr)
+
+arr.map(function (ele,index,arr) {
+    var row=document.createElement("tr")
+
+    var name = document.createElement("td");
+        name.innerText = ele.name;
+
+        var number = document.createElement("td");
+        number.innerText = ele.number;
+        var city = document.createElement("td");
+        city.innerText =ele.city;
+  row.append(name, number ,city)
+    document.querySelector("tbody").append(row);
+});
+
+</script>
