@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TandingPage</title>
+    <style>
+        /* #movies
+        {
+            border: solid;
+            height: 250px;
+            width: 200px;
+            overflow: scroll;
+        } */
+        #query
+        {
+            border: 3px solid black;
+            border-radius: 5px;
+            height: 40px;
+            width:70%;
+
+            margin-left: 18%;
+            margin-top: 10px;
+        }
+        #container
+        {
+            
+            display: flex;
+        }
+        input[type="text"] {
+    font-size:25px;
+}
+        #poster
+        {
+            height: 200px;
+            width: 100%;
+        }
+        #moviediv
+        {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color:white ;
+            border-radius:5px ;
+        }
+        h1{
+            /* margin-left: 20%; */
+           color: #cc8585;
+           text-align: center;
+        }
+        #Papularmovies
+        {
+           /* border:2px solid purple; */
+            /* height:150px; */
+          /* width: 300px; */
+          gap:10px;
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+           
+            /* margin: auto; */
+         /* transform: translate3d(-1262px, 0px, 0px); */
+         
+         
+        }
+    </style>
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+</head>
+<body>
+    <h1>WHICH MOVIE DO YOU WATCH</h1>
+    <input oninput="debounce(main,3000)" type="text" id="query" placeholder="Movie Search Here"/>
+    
+    <!-- <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": true, "imagesLoaded":true }'> -->
+    <div id="Papularmovies">
+        
+        
+    </div><
+
+   
+  <!-- </div> -->
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script>
+    // var movies=document.querySelector("#movies")
+    async function searchMovie()
+    {
+        try{
+          
+
+            // let input=document.querySelector("#query").value;
+       
+           
+            let url=`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7a2c71d372bbd659117f5f13841473a9`;
+                let res=await fetch(url)
+
+                let data=await res.json();
+                console.log(data.results)
+                appendData(data.results)
+                
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+    searchMovie()
+var image_Url='https://image.tmdb.org/t/p/w500'
+
+function appendData(data)
+{
+  
+    data.map(function(ele,index)
+{
+  //  var rating=await rat(ele.imdbID);
+    
+     // console.log(rating)
+    //document.querySelector("#container").innerHTML=null
+  
+    var divgalary=document.createElement("div");
+    divgalary.setAttribute("id","moviediv")
+    
+
+    var divinfo=document.createElement("div");
+   divinfo.setAttribute("id","infodiv")
+   
+    var img=document.createElement("img");
+    img.setAttribute("src", image_Url+ele.poster_path);
+    img.setAttribute("id","poster");
+
+
+    var divposter=document.createElement("div");
+    divposter.setAttribute("id","posterdiv")
+
+    
+    var movienme=document.createElement("p");
+
+   movienme.innerText=ele.title;
+
+    
+//movies.append(movienme)
+
+    // var movieType=document.createElement("p");
+
+    // movieType.innerText=ele.overview;
+  
+   var movierating=document.createElement("p");
+  // var rating=await rat(ele.imdbID);
+
+
+    movierating.innerText="IMDb rating : "+ele.vote_average+"/"+10;
+    movierating.style.color="green"
+  
+  
+    var realeseDate=document.createElement("p");
+
+    realeseDate.innerText="Date: "+ele.release_date;
+
+
+
+
+   divposter.append(img)
+   divinfo.append(movienme,movierating,realeseDate)
+   divgalary.append(divposter,divinfo)
+        document.querySelector("#Papularmovies").append(divgalary);
+
+    
+  
+});
+}
+
+
+
+
+
+// // async function rat(imdbID)
+// // {
+    
+
+// //      var ratingdata;
+// //      var ratingreun;
+// //          try{
+// //              let res=await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=23ad7e60&`);
+// //              ratingdata=await res.json();
+// //          // console.log(ratingdata)
+        
+// //           ratingreun=call(ratingdata)
+         
+// //         let rates=ratingreun
+// //         // console.log(rates)
+// //          return rates;
+        
+     
+// //          }
+// //          catch(err)
+// //          {
+// //              console.log(err)
+// //          }
+       
+// // }
+
+
+// // function call(ratingdata)
+// // {
+// //   let result= ratingdata.imdbRating
+
+// //     return result;
+// // }
+
+
+
+
+//    async function main()
+//     {
+//         try{
+//         let data=await searchMovie()
+//         if(data===undefined)
+//         {
+//             return false
+//         }
+//         else
+//         {
+//         appendData(data)
+//         }
+    
+//     }
+//     catch(err)
+//     {
+//         console.log(err)
+//     }
+//     }
+
+
+
+
+
+
+
+//     function debounce(func, delay)
+
+    // {
+    //     let timerid
+    //     if(timerid)
+    //     {
+    //         clearTimeout(timerid);
+    //     }
+    //     timerid=setTimeout(function()
+    //     {
+    //         func();
+    //     },delay)
+        
+    // }
+</script>
+</html>
