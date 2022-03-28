@@ -1,0 +1,44 @@
+#links
+{
+    width: 100%;
+ 
+    height: 80px;
+/* border: solid; */
+
+display: flex;
+ justify-content: space-evenly;
+
+}
+#links>div
+{
+    margin-top: 50px;
+   
+}
+#links>div:nth-child(1)
+{
+    /* width: 500px; */
+    height: 200px;
+    border-radius:40% ;
+    text-align: center;
+    padding-right:200px;
+    
+    /* border: solid; */
+}
+#links>div:nth-child(1)>img
+{
+ 
+    width: 80%;
+    border-radius:50% ;
+}
+#inputSearch
+{
+    width: 500px;
+    height: 30px;
+    border-radius: 5px;
+}
+#profileName
+{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: gray;
+}
